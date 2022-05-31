@@ -27,10 +27,16 @@ function renderOneProduct(product){
     findDiv.append(newElement)
 }
 
+
+
+
+
+
 // add to cart function 
 
 function add_to_cart(product){
 
+    console.log(typeof product)
     fetch("./productlist.json")
     .then(response => {
        return response.json();
@@ -38,7 +44,7 @@ function add_to_cart(product){
     .then(jsondata => console.log(jsondata));
     
 
-    console.log(product);
+    console.log( "this is product" ,product);
     const cartbtn = document.getElementById(`"cart-btn-${product.product_id}"`)
     
     const cart_added = document.getElementById("cart-added");
@@ -50,7 +56,7 @@ function add_to_cart(product){
         <img src="${product.product_img}" alt="...">
       
         <div class="card-body ml-3">
-          <h5 class="card-title">${product.product_name}</h5>
+          <h5 class="card-title">${product}</h5>
           <input type="number" name="" class="rounded cart-quantity-input" style="width:50px ;" id="">
           <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
           <p class="card-text"><small class="text-dark cart-price">${product.price} rs</small></p>
@@ -59,7 +65,7 @@ function add_to_cart(product){
       
     </div>
   </div>`
-
+ 
 }
 
 
