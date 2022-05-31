@@ -1,18 +1,32 @@
 [{
     "product_id" : 1,
-    "product_name": "prod1",
-    "product_img":"https://images.unsplash.com/photo-1644462786531-c7e6e006183c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
-    "price": 100
+    "product_name": "White Shoes",
+    "product_img":"https://images.unsplash.com/photo-1633176525096-1ed08f07397b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+    "price": 500
 },
 {
     "product_id" : 2,
-    "product_name": "prod 2",
-    "product_img":"https://images.unsplash.com/photo-1644462786531-c7e6e006183c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
-    "price": 100
+    "product_name": "Iphone",
+    "product_img":"https://images.unsplash.com/photo-1591337676887-a217a6970a8a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+    "price": 1000
 },
 {
     "product_id" : 3,
-    "product_name": "prod 3",
-    "product_img":"https://images.unsplash.com/photo-1644462786531-c7e6e006183c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
-    "price": 100
-}]
+    "product_name": "Wallet",
+    "product_img":"https://images.unsplash.com/photo-1620109433753-a62f2c961b69?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+    "price": 50
+},
+{
+    "product_id" : 4,
+    "product_name": "Laptop",
+    "product_img":"https://images.unsplash.com/photo-1577375729152-4c8b5fcda381?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+    "price": 5000
+},
+
+{
+    "product_id" : 5,
+    "product_name": "Headphone",
+    "product_img":"https://images.unsplash.com/photo-1624814448280-0f2d7d399b07?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=521&q=80",
+    "price": 400
+}
+]

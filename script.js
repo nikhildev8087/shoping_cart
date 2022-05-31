@@ -1,49 +1,205 @@
-var product_data = []
+fetch("./productlist.json")
+.then(response => response.json())
+.then(productArray => renderAllProducts(productArray));
 
+function renderAllProducts(productsArray){
+    productsArray.forEach(product => renderOneProduct(product))
+}
 
-    const data = fetch("./productlist.json")
-    .then(response => {
-    return response.json();
-    })
-    .then(jsondata => {
-         product_data = jsondata
-        //  const myObj = JSON.parse(product_data);
-        product_list = document.getElementById('product-list')
+const findDiv = document.querySelector("#product-list");
 
-        product_id = 1;
-        product_title = "Product 1";
-        product_price = product_data[0].product_price;
-
-        product_data.forEach(element => {
-             = [product_data]
-        });
-        product_item = `<div class="col-md-4">
-                            <div class="card" style="width: 18rem;">
-                                <img src="https://images.unsplash.com/photo-1644462786531-c7e6e006183c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                <h5 class="card-title">${product_title}</h5>
-                                <p class="card-text" value="100">${product_price} rs</p>
-                                <a href="#" class="btn btn-primary " id="cart-btn-${product_id}" onclick="add_to_cart(${product_id},)">Add to Cart</a>
+function renderOneProduct(product){
+    const newElement = document.createElement("div");
+    newElement.className="content";
+    newElement.innerHTML = `
+    <div class="col-md-3 p-2">
+    <div class="card " style="width: 18rem;">
+                                   <img src="${product.product_img}" class="card-img-top" alt="...">
+                                   <div class="card-body">
+                                <h5 class="card-title">${product.product_name}</h5>
+                                   <p class="card-text" value="100">${product.price} rs</p>
+                                    <a href="#" class="btn btn-primary " id="cart-btn-${product.product_id}" onclick="add_to_cart(${product.product_id},)">Add to Cart</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>`
+                            </div>`
 
-        product_list.innerHTML = product_item
-        console.log(product_data);
-        console.log(typeof product_data);
-        console.log(product_data.length);
-        console.log(product_data.product_price);
-    });
+    findDiv.append(newElement)
+}
 
-    function add_to_cart(product_id){
+// add to cart function 
+
+function add_to_cart(product){
+
+    fetch("./productlist.json")
+    .then(response => {
+       return response.json();
+    })
+    .then(jsondata => console.log(jsondata));
+    
+
+    console.log(product);
+    const cartbtn = document.getElementById(`"cart-btn-${product.product_id}"`)
+    
+    const cart_added = document.getElementById("cart-added");
+    // const cartelement = document.createElement("div");
+    // cartelement.className="content";
+    cart_added.innerHTML =`<div class="card mb-3 ml-2" style="max-width: 540px;">
+    <div class="row no-gutters cart-item">
+      
+        <img src="${product.product_img}" alt="...">
+      
+        <div class="card-body ml-3">
+          <h5 class="card-title">${product.product_name}</h5>
+          <input type="number" name="" class="rounded cart-quantity-input" style="width:50px ;" id="">
+          <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+          <p class="card-text"><small class="text-dark cart-price">${product.price} rs</small></p>
+          <button class="btn btn-danger d-block">Remove</button>
+        </div>
+      
+    </div>
+  </div>`
+
+}
+
+
+
+
+
+
+
+
+// step 1 access remove button and store into verable
+let removeCartItemButtons = document.getElementsByClassName("btn-danger");
+console.log(removeCartItemButtons);
+
+
+let count = 0
+//there are multiple buttons with same class to traverse it use for loop
+for(let i=0; i<removeCartItemButtons.length; i++){
+    let button = removeCartItemButtons[i];
+    button.addEventListener("click", function(event){
         
-        cart_btn = document.getElementById('cart-btn-'+product_id)
+        count ++;
+        console.log(count);
+        let buttonclicked =  event.target;
+        buttonclicked.parentElement.parentElement.parentElement.remove();
 
-        console.log(product_data);
+        updateCartTotal();
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var product_data = []
+
+// // const jsonparse = JSON.parse('./productlist.json');
+// // console.log(jsonparse);
+
+//     const data = fetch("./productlist.json")
+//     .then(response => {
+//     return response.json();
+//     })
+//     .then(jsondata => {
+//          product_data = jsondata
+
+//         //  product_data.forEach(product => fetchproduct(product));
+//         //  console.log(product.product_id);
+//         //  const myObj = JSON.parse(product_data);
+//         product_list = document.getElementById('product-list')
+
+//         product_id = 1;
+//         product_title = "Product 1";
+//         product_price = product_data.product_price;
+
+//         // product_data.forEach(element => {
+//         //      = [product_data]
+//         // });
+
+//          console.log(product_data.product_id);
+//         product_item.forEach(product => fetchproduct(product))
+//   = `<div class="col-md-4">
+//                             <div class="card" style="width: 18rem;">
+//                                 <img src="https://images.unsplash.com/photo-1644462786531-c7e6e006183c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" class="card-img-top" alt="...">
+//                                 <div class="card-body">
+//                                 <h5 class="card-title">${product_title}</h5>
+//                                 <p class="card-text" value="100">${product_price} rs</p>
+//                                 <a href="#" class="btn btn-primary " id="cart-btn-${product_id}" onclick="add_to_cart(${product_id},)">Add to Cart</a>
+//                                 </div>
+//                             </div>
+//                         </div>`
+
+//         product_list.innerHTML = product_item
+//         console.log(product_data);
+//         console.log(typeof product_data);
+//         console.log(product_data.length);
+//         console.log(product_data.product_price);
+//     });
+
+//     function add_to_cart(product_id){
         
-    }
+//         cart_btn = document.getElementById('cart-btn-'+product_id)
 
-    console.log(product_data.price);
+//         console.log(product_data);
+        
+//     }
+
+//     console.log(product_data.price);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // let btns = document.querySelectorAll('#cart-btn');
