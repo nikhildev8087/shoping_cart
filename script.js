@@ -17,9 +17,9 @@ function renderProdcuts() {
                         <h2 class="card-title">${product.name}</h2>
                         <h2 class="card-text">${product.price}</h2>
                        
-                        <div class="add-to-cart-${product.id}" onclick="addToCart(${product.id})">
-                       
-                        <a href="#" class="btn btn-primary " id="cart${product.id}">Add to Cart</a>
+                        <div class="add-to-cart-${product.id}" >
+                        <button class="btn btn-primary" onclick="addToCart(${product.id})" id="cart${product.id}">Add to Cart</button>
+                        <button class="btn btn-danger btnrem_${product.id}" onclick="removeItemFromCart(${product.id})">Remove</button>
                     </div>
                     </div>
                     
@@ -32,29 +32,131 @@ function renderProdcuts() {
 
 renderProdcuts();
 
+// const cart1 = document.getElementById("cart0");
+// cart1.addEventListener("click",function(){
+
+//   if(cart1.innerHTML="Add to Cart"){
+
+//     cart1.style.display="none";
+//   }else{
+//     cart1.innerHTML="remove";
+//     cart1.style.display="inline-block";
+//   }
+// })
+
+
+
+
+
+// const cartRemove = document.getElementById("cartRemove");
+
+// cartRemove.addEventListener("click", function(){
+//   console.log(this);
+// })
+
+
+
+// const btnid = document.getElementById("cart0");
+
+// function changeText(id){
+//   products.forEach((product) => {
+//     if(product.id === id){
+
+//       console.log(id);
+//       console.log(product.id.innerHTML);
+//       if(btnid.innerHTML === 'Add to Cart'){
+//         btnid.innerHTML='remove';
+//         btnid.className = 'btn btn-danger'
+//         removeItemFromCart(id);
+//       }else{
+//         btnid.innerHTML='Add to Cart';
+//         btnid.className = 'btn btn-primary';
+//         addToCart (id);
+//       }
+      
+//     }
+//   });
+ 
+//   console.log(btnid.innerHTML);
+// }
+
+// function hidebtn(){
+
+//   const  btnremove = document.querySelectorAll("btn-danger");
+//   console.log(btnremove);
+//   btnremove.innerHTML ="none";
+// }
+
+// // hidebtn();
+
 
 // const btnprimary = document.querySelector(`"#cart${product.id}"`);
 
 // btnprimary.addEventListener('click',function(){
-//   btnprimary.className= ' btn-danger';
+//   id.className= ' btn-danger';
 //   btnprimary.innerHTML= "Remove";
 
 // })
 
+let name = [];
+localStorage.setItem("name",JSON.stringify("name"))
 
 // cart array in the local storage
 let cart = JSON.parse(localStorage.getItem("CART")) || [];
 updateCart();
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Add to cart
 function addToCart(id) {
+  
+  var idname = "cart"+id;
+  console.log(idname);
+      const changebtn = document.getElementById(`${idname}`);
+      // console.log(items);
+      console.log("this is a change btn",changebtn);
+      // changebtn.style.display = "none";
+      changebtn.innerHTML = "Remove";
+      changebtn.className = "btn btn-danger";
   // check if prodcut already exist in cart
  
+  // products.forEach((items)=>{
+
+  //   if(items.id === id){
+
+  //     var idname = "cart"+id;
+  //     console.log(idname);
+  //         const changebtn = document.getElementById(`${idname}`);
+  //         console.log(items);
+  //         console.log("this is a change btn",changebtn);
+  //         // changebtn.style.display = "none";
+  //         changebtn.innerHTML = "Remove";
+  //         changebtn.className = "btn btn-danger";
+  //         // changebtn.onclick = removeItemFromCart(id);
+         
+
+  //   }
+  // })
 
   console.log(id);
+
+
   if (cart.some((item) => item.id === id)) {
     
-    
+  
 
     changeNumberOfUnits("plus", id);
   } else {
@@ -68,6 +170,9 @@ function addToCart(id) {
       numberOfUnits: 1,
     });
   }
+
+  
+  
 
   updateCart();
 }
@@ -115,8 +220,8 @@ function renderCartItems() {
                 <div class="number">${item.numberOfUnits}</div>
                 <div class="btn plus" onclick="changeNumberOfUnits('plus', ${item.id})">+</div>           
             </div>
-            <div class="item-info" onclick="removeItemFromCart(${item.id})">
-            <button class="btn btn-danger">Remove</button>
+            <div class="item-info" >
+            <button class="btn btn-danger btn_${item.id}" onclick="removeItemFromCart(${item.id})">Remove</button>
         </div>
         </div>
       `;
@@ -124,11 +229,34 @@ function renderCartItems() {
 }
 
 
+
 // remove item from cart
 function removeItemFromCart(id) {
-  cart = cart.filter((item) => item.id !== id);
 
+  cart.forEach((items)=>{
+
+    if(items.id === id){
+
+      var abc = "cart"+id;
+      console.log(abc);
+          const changebtn = document.getElementById(`${abc}`);
+          console.log(items);
+          console.log("this is a change btn",changebtn);
+          changebtn.innerHTML = "Add To Cart";
+          changebtn.className = "btn btn-primary";
+          // changebtn.onclick=addToCart(id);
+
+          console.log(changebtn);
+         
+    }
+  })
+
+  
+  cart = cart.filter((item) => item.id !== id);
   updateCart();
+
+  
+  
 }
 
 // change number of units for an item
@@ -152,6 +280,9 @@ function changeNumberOfUnits(action, id) {
 
   updateCart();
 }
+
+
+
 
 
 
